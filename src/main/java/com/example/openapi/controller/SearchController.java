@@ -5,6 +5,7 @@ import com.example.openapi.repository.Blog;
 import com.example.openapi.repository.Movie;
 import com.example.openapi.repository.Result;
 import com.example.openapi.service.CombineSearchService;
+import com.example.openapi.service.MovieSortService;
 import com.example.openapi.service.SearchService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,20 +19,22 @@ import java.util.List;
 public class SearchController {
     private final SearchService searchService;
     private final CombineSearchService combineSearchService;
+    private final MovieSortService movieSortService;
     private final SearchProperties searchProperties;
 
     public SearchController(SearchService searchService, SearchProperties searchProperties,
-                            CombineSearchService combineSearchService){ //@Autowired말고 생성자로 주입하기
+                            CombineSearchService combineSearchService, MovieSortService movieSortService){ //@Autowired말고 생성자로 주입하기
         this.searchProperties = searchProperties;
         this.searchService = searchService;
         this.combineSearchService = combineSearchService;
+        this.movieSortService = movieSortService;
     }
 
     @GetMapping("/search")
     public List<Result> search(@RequestParam(name = "query") String query){
         Blog blog = (Blog) searchService.search(searchProperties.getBlogUrl(), query, Blog.class);
         Movie movie = (Movie) searchService.search(searchProperties.getMovieUrl(), query, Movie.class);
-        return combineSearchService.combine(blog,movie);
+        return combineSearchService.combine(blog,movieSortService.sort(movie));
     }
 
     @GetMapping("/blog")
@@ -40,7 +43,8 @@ public class SearchController {
     }
 
     @GetMapping("/movie")
-    public Result movieSearch(@RequestParam(name = "query") String query){
-        return searchService.search(searchProperties.getMovieUrl(),query, Movie.class);
+    public Movie movieSearch(@RequestParam(name = "query") String query){
+        Movie movie = (Movie) searchService.search(searchProperties.getMovieUrl(),query, Movie.class);
+        return movieSortService.sort(movie);
     }
 }
