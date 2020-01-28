@@ -1,14 +1,10 @@
 package com.example.openapi.service;
 
 import com.example.openapi.SearchProperties;
-import com.example.openapi.repository.Movie;
 import com.example.openapi.repository.Result;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Comparator;
-import java.util.stream.Stream;
 
 @Service
 public class SearchService {
