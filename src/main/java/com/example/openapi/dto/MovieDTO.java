@@ -11,6 +11,9 @@ import java.util.List;
 public class MovieDTO {
     private List<Movie.Item> items;
 
+    public MovieDTO(Movie movie){
+        this.items = movie.getItems();
+    }
     @Getter
     @Setter
     public static class Item{

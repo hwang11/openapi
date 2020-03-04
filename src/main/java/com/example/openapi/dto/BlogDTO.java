@@ -14,6 +14,13 @@ public class BlogDTO extends ResultDTO {
     private int display;
     private List<Blog.Item> items;
 
+    public BlogDTO(Blog blog){
+        this.total = blog.getTotal();
+        this.start = blog.getStart();
+        this.display = blog.getDisplay();
+        this.items = blog.getItems();
+    }
+
     @Getter
     @Setter
     public static class Item {

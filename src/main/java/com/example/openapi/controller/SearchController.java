@@ -1,6 +1,8 @@
 package com.example.openapi.controller;
 
 import com.example.openapi.SearchProperties;
+import com.example.openapi.dto.BlogDTO;
+import com.example.openapi.dto.ResultDTO;
 import com.example.openapi.repository.Blog;
 import com.example.openapi.repository.Movie;
 import com.example.openapi.repository.Result;
@@ -31,8 +33,9 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public List<Result> search(@RequestParam(name = "query") String query){
+    public List<ResultDTO> search(@RequestParam(name = "query") String query){
         Blog blog = (Blog) searchService.search(searchProperties.getBlogUrl(), query, Blog.class);
+        BlogDTO blogDTO = new blogDTO(blog);
         Movie movie = (Movie) searchService.search(searchProperties.getMovieUrl(), query, Movie.class);
         return combineSearchService.combine(blog,movieSortService.sort(movie));
     }
