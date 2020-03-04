@@ -6,12 +6,10 @@ import lombok.Setter;
 import java.util.List;
 
 @Getter
-@Setter
 public class Movie extends Result {
     private List<Item> items;
 
     @Getter
-    @Setter
     public static class Item{
         private String title;
         private String link;

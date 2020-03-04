@@ -6,7 +6,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Getter
-@Setter
 public class Blog extends Result {
     private int total;
     private int start;
@@ -14,7 +13,6 @@ public class Blog extends Result {
     private List<Item> items;
 
     @Getter
-    @Setter
     public static class Item {
         private String title;
         private String link;
