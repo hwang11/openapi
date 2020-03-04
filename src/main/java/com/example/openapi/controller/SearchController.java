@@ -2,10 +2,10 @@ package com.example.openapi.controller;
 
 import com.example.openapi.SearchProperties;
 import com.example.openapi.dto.BlogDTO;
+import com.example.openapi.dto.MovieDTO;
 import com.example.openapi.dto.ResultDTO;
 import com.example.openapi.repository.Blog;
 import com.example.openapi.repository.Movie;
-import com.example.openapi.repository.Result;
 import com.example.openapi.service.CombineSearchService;
 import com.example.openapi.service.MovieSortService;
 import com.example.openapi.service.SearchService;
@@ -35,19 +35,22 @@ public class SearchController {
     @GetMapping("/search")
     public List<ResultDTO> search(@RequestParam(name = "query") String query){
         Blog blog = (Blog) searchService.search(searchProperties.getBlogUrl(), query, Blog.class);
-        BlogDTO blogDTO = new blogDTO(blog);
+        BlogDTO blogDTO = new BlogDTO(blog);
         Movie movie = (Movie) searchService.search(searchProperties.getMovieUrl(), query, Movie.class);
-        return combineSearchService.combine(blog,movieSortService.sort(movie));
+        MovieDTO movieDTO = new MovieDTO(movie);
+        return combineSearchService.combine(blogDTO,movieSortService.sort(movieDTO));
     }
 
     @GetMapping("/blog")
-    public Result blogSearch(@RequestParam(name = "query") String query){
-        return searchService.search(searchProperties.getBlogUrl(),query, Blog.class);
+    public ResultDTO blogSearch(@RequestParam(name = "query") String query){
+        Blog blog = (Blog) searchService.search(searchProperties.getBlogUrl(), query, Blog.class);
+        return new BlogDTO(blog);
     }
 
     @GetMapping("/movie")
-    public Movie movieSearch(@RequestParam(name = "query") String query){
-        Movie movie = (Movie) searchService.search(searchProperties.getMovieUrl(),query, Movie.class);
-        return movieSortService.sort(movie);
+    public MovieDTO movieSearch(@RequestParam(name = "query") String query){
+        Movie movie = (Movie) searchService.search(searchProperties.getMovieUrl(), query, Movie.class);
+        MovieDTO movieDTO = new MovieDTO(movie);
+        return movieDTO;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.openapi.service;
 
-import com.example.openapi.repository.Blog;
-import com.example.openapi.repository.Movie;
-import com.example.openapi.repository.Result;
+import com.example.openapi.dto.BlogDTO;
+import com.example.openapi.dto.MovieDTO;
+import com.example.openapi.dto.ResultDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 public class CombineSearchService {
     private static final int LIMIT_ITEM_COUNT = 5;
 
-    public List<Result> combine(Blog blog, Movie movie){
-        List<Result> results = new LinkedList<Result>();
-        blog.setItems(blog.getItems().stream().limit(LIMIT_ITEM_COUNT).collect(Collectors.toList()));
-        movie.setItems(movie.getItems().stream().limit(LIMIT_ITEM_COUNT).collect(Collectors.toList()));
-        results.add(blog);
-        results.add(movie);
+    public List<ResultDTO> combine(BlogDTO blogDTO, MovieDTO movieDTO){
+        List<ResultDTO> results = new LinkedList<ResultDTO>();
+        blogDTO.setItems(blogDTO.getItems().stream().limit(LIMIT_ITEM_COUNT).collect(Collectors.toList()));
+        movieDTO.setItems(movieDTO.getItems().stream().limit(LIMIT_ITEM_COUNT).collect(Collectors.toList()));
+        results.add(blogDTO);
+        results.add(movieDTO);
         return results;
     }
 }
