@@ -1,6 +1,7 @@
 package com.example.openapi.service;
 
 import com.example.openapi.SearchProperties;
+import com.example.openapi.dto.ResultDTO;
 import com.example.openapi.repository.Result;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
