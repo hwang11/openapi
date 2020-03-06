@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class BlogDTO extends ResultDTO {
+public class BlogDTO extends SearchResultDto {
     private int total;
     private int start;
     private int display;

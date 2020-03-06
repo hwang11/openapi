@@ -43,6 +43,7 @@ dependencies { //프로젝트 개발에 필요한 의존성들 선언
 	}
 	// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5'
+	compile('org.springframework.boot:spring-boot-starter-mustache')
 
 }
 

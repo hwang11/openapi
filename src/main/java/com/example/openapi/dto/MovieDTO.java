@@ -1,5 +1,6 @@
 package com.example.openapi.dto;
 
+
 import com.example.openapi.repository.Movie;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class MovieDTO extends ResultDTO{
+public class MovieDTO extends SearchResultDto {
     private List<Item> items;
 
     public MovieDTO(Movie movie){

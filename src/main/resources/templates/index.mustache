@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>검색 사이트</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>영화, 블로그 검색</h1>
+<div class="col-md-12">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
+        <span class="input-group-btn">
+    <button class="btn btn-secondary" type="button">찾기</button>
+  </span>
+    </div>
+    <div class="container">
+        <h2>Hover Rows</h2>
+        <p>The .table-hover class enables a hover state (grey background on mouse over) on table rows:</p>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+            </tr>
+            <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+            </tr>
+            <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>제목</th>
+            <th>링크</th>
+            <th>설명</th>
+            <th>블로그명</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#blogItems}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{link}}</td>
+                <td>{{description}}</td>
+                <td>{{bloggername}}</td>
+            </tr>
+        {{/blogItems}}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
